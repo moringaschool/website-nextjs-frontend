@@ -14,9 +14,9 @@ const Home = ({  homepage, menu , testimonials, courses, partners}) => {
         <Seo seo={homepage.seo} />
         <Hero homepage={homepage} />
         <Feature homepage={homepage} />
-        <Testimonials testimonials={testimonials} />
-        <Courses homepage={homepage} courses={courses} />
-        <Partners partners={partners} />
+          {testimonials && (<Testimonials testimonials={testimonials} />)}
+          {courses && (<Courses homepage={homepage} courses={courses} />)}
+          {partners && <Partners partners={partners} />}
       </Layout>
   );
 };
