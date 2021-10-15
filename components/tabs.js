@@ -6,9 +6,9 @@ const Tabs = ( { items }) => {
             <div className="flow-root bg-gray-50 rounded-lg px-6 pb-8">
                 <div className="-mt-6">
                     <div className="flex space-x-5">
-                        {items.map((item) => {
+                        {items.map((item, index) => {
                             return (
-                                <div className="p-2 bg-white rounded-full shadow-lg h-32 w-32">
+                                <div className="p-2 bg-white rounded-full shadow-lg h-32 w-32" key={`tab-title-${index}`}>
                                 <div className="inline-flex items-center justify-center p-3 bg-primary focus:bg-secondary hover:bg-secondary cursor-pointer uppercase text-center text-white rounded-full h-full w-full text-xs">
                                     {item.title}
                                 </div>

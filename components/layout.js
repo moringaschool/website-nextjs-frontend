@@ -1,14 +1,20 @@
 import Nav from "./nav";
 import Footer from "./footer";
-export default function Layout ({children, menu, seo}) {
+import {GlobalContext} from "../pages/_app";
+import {useContext} from "react";
+
+export default function Layout({children, seo}) {
+    const { global, menu} = useContext(GlobalContext);
     return (
         <div className="font-gotham-rounded">
-            <Nav menu={menu}/>
+            <Nav menu={menu.main} global={global}/>
             <main className="text-primary">
                 {children}
             </main>
-            <Footer/>
+            <Footer menu={menu.footer} global={global} />
         </div>
     );
 }
+
+
 

@@ -1,15 +1,16 @@
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
+import {getStrapiMedia} from "../lib/media";
 
-export default function Nav({menu}) {
+export default function Nav({menu, global}) {
     return (
         <header id="main_navigation" className="sticky top-0 z-20 relative text-primary font-medium bg-white">
             <div className="relative z-20">
                 <div className="max-w-7xl mx-auto flex justify-between items-center px-8 sm:px-0 md:justify-start md:space-x-10 border-b-2 border-secondary">
                     <div className="py-2">
                         <a href="http://corporate.test" className="flex">
-                            <img className="h-12 w-auto" src="http://corporate.test/wp-content/themes/moringa/public/images/logo.png" alt="Moringa School logo" />
+                            <img className="h-12 w-auto" src={getStrapiMedia(global.logo)} alt="Moringa School logo" />
                         </a>
                     </div>
                     <div className="-mr-2 -my-2 md:hidden">
@@ -25,19 +26,23 @@ export default function Nav({menu}) {
                     </nav>
                     <div className="flex flex-wrap">
                         <ul id="" className="flex items-center text-sm space-x-8">
-                            <li itemScope="itemScope" itemType="https://www.schema.org/SiteNavigationElement" id="menu-item-5" className="relative menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown menu-item-5 nav-item"><a title="Courses" href="http://corporate.test/courses" className="uppercase transition duration-300 ease-in-out text-primary hover:text-secondary nav-link py-2">Courses</a>
-                            <ul className="absolute w-96 grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8 bg-inherit invisible transition duration-300 ease-in-out  top-8" role="menu">
-                                <li itemScope="itemScope" itemType="https://www.schema.org/SiteNavigationElement" id="menu-item-63" className="relative menu-item menu-item-type-post_type menu-item-object-courses menu-item-63 nav-item"><a title="Software Development In-person" href="http://corporate.test/courses/software-development-in-person/" className="dropdown-item">Software Development In-person</a></li>
-                                <li itemScope="itemScope" itemType="https://www.schema.org/SiteNavigationElement" id="menu-item-62" className="relative menu-item menu-item-type-post_type menu-item-object-courses menu-item-62 nav-item"><a title="Software Development Online" href="http://corporate.test/courses/software-development-online/" className="dropdown-item">Software Development Online</a></li>
-                                <li itemScope="itemScope" itemType="https://www.schema.org/SiteNavigationElement" id="menu-item-61" className="relative menu-item menu-item-type-post_type menu-item-object-courses menu-item-61 nav-item"><a title="Data Science Full-time" href="http://corporate.test/courses/data-science-full-time/" className="dropdown-item">Data Science Full-time</a></li>
-                                <li itemScope="itemScope" itemType="https://www.schema.org/SiteNavigationElement" id="menu-item-60" className="relative menu-item menu-item-type-post_type menu-item-object-courses menu-item-60 nav-item"><a title="Data Science Part-time" href="http://corporate.test/courses/data-science-part-time/" className="dropdown-item">Data Science Part-time</a></li>
-                            </ul>
-                        </li>
-                            <li itemScope="itemScope" itemType="https://www.schema.org/SiteNavigationElement" id="menu-item-6" className="relative menu-item menu-item-type-custom menu-item-object-custom menu-item-6 nav-item"><a title="Why Moringa School" href="http://corporate.test/why-moringa-school" className="uppercase transition duration-300 ease-in-out text-primary hover:text-secondary nav-link py-2">Why Moringa School</a></li>
-                            <li itemScope="itemScope" itemType="https://www.schema.org/SiteNavigationElement" id="menu-item-7" className="relative menu-item menu-item-type-custom menu-item-object-custom menu-item-7 nav-item"><a title="Financial Aid" href="http://corporate.test/financial-aid" className="uppercase transition duration-300 ease-in-out text-primary hover:text-secondary nav-link py-2">Financial Aid</a></li>
-                            <li itemScope="itemScope" itemType="https://www.schema.org/SiteNavigationElement" id="menu-item-8" className="relative menu-item menu-item-type-custom menu-item-object-custom menu-item-8 nav-item"><a title="Events" href="http://corporate.test/events" className="uppercase transition duration-300 ease-in-out text-primary hover:text-secondary nav-link py-2">Events</a></li>
-                            <li itemScope="itemScope" itemType="https://www.schema.org/SiteNavigationElement" id="menu-item-9" className="relative menu-item menu-item-type-custom menu-item-object-custom menu-item-9 nav-item"><a title="About Us" href="http://corporate.test/about-us" className="uppercase transition duration-300 ease-in-out text-primary hover:text-secondary nav-link py-2">About Us</a></li>
-                            <li itemScope="itemScope" itemType="https://www.schema.org/SiteNavigationElement" id="menu-item-10" className="relative menu-item menu-item-type-custom menu-item-object-custom menu-item-10 nav-item"><a title="Blog" href="http://corporate.test/blog" className="uppercase transition duration-300 ease-in-out text-primary hover:text-secondary nav-link py-2">Blog</a></li>
+                            {menu && ( menu.map((item) => {
+                                return (
+                                    <li key={`menu-item-${item.id}`} className="relative menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropdown menu-item-5 nav-item">
+                                        <a title={item.title} href={item.url} className="uppercase transition duration-300 ease-in-out text-primary hover:text-secondary nav-link py-2">{item.title}</a>
+                                        <ul className="absolute w-96 grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8 bg-inherit invisible transition duration-300 ease-in-out  top-8" role="menu">
+                                        {item.subitems && item.subitems.map((subItem) => {
+                                            return (
+                                                <li key={`submenu-item-${subItem.id}`} className="relative menu-item menu-item-type-post_type menu-item-object-courses menu-item-63 nav-item">
+                                                    <a title={subItem.url} href={subItem.url} className="dropdown-item">{subItem.title}</a>
+                                                </li>
+                                            );
+                                        })}
+                                        </ul>
+                                    </li>
+                                )
+                                })
+                            )}
                         </ul>
                         <a href="#" className="flex items-center">
                             <span className="pt-1 ml-0 sm:ml-6">
@@ -69,16 +74,9 @@ export default function Nav({menu}) {
             <div>
                 <nav className="space-y-8">
                     <ul id="" className="flex flex-col space-y-8">
-                        <li><a href="http://corporate.test/courses">Courses</a></li>
-                        <li><a href="http://corporate.test/courses/software-development-in-person/">Software Development In-person</a></li>
-                        <li><a href="http://corporate.test/courses/software-development-online/">Software Development Online</a></li>
-                        <li><a href="http://corporate.test/courses/data-science-full-time/">Data Science Full-time</a></li>
-                        <li><a href="http://corporate.test/courses/data-science-part-time/">Data Science Part-time</a></li>
-                        <li><a href="http://corporate.test/why-moringa-school">Why Moringa School</a></li>
-                        <li><a href="http://corporate.test/financial-aid">Financial Aid</a></li>
-                        <li><a href="http://corporate.test/events">Events</a></li>
-                        <li><a href="http://corporate.test/about-us">About Us</a></li>
-                        <li><a href="http://corporate.test/blog">Blog</a></li>
+                        {menu && ( menu.map((item) => {
+                            return (<li key={`mobile-menu-item-${item.id}`}><a href={item.url}>{item.title}</a></li>);
+                        }))}
                     </ul>
                     <a href="#" className="flex items-center">
                         <span className="pt-1 ml-0 sm:ml-6">

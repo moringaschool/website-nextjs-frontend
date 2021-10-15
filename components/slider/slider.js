@@ -3,7 +3,7 @@ import { PrevButton, NextButton, DotButton } from "./slider-buttons";
 import { useRecursiveTimeout } from "./user-recurssive-timeout";
 import useEmblaCarousel from "embla-carousel-react";
 
-const Slider = ({ children, autoPlayInterval }) => {
+const Slider = ({ children, autoPlayInterval, arrowButtons }) => {
     const [viewportRef, embla] = useEmblaCarousel({ skipSnaps: false });
     const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
     const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
@@ -64,8 +64,12 @@ const Slider = ({ children, autoPlayInterval }) => {
                     ))}
                 </div>
             </div>
-            <PrevButton onClick={scrollPrev} enabled={prevBtnEnabled} />
-            <NextButton onClick={scrollNext} enabled={nextBtnEnabled} />
+            {arrowButtons && (
+                <>
+                    <PrevButton onClick={scrollPrev} enabled={prevBtnEnabled} />
+                    <NextButton onClick={scrollNext} enabled={nextBtnEnabled} />
+                </>
+            )}
         </div>
             <div className="embla__dots">
                 {scrollSnaps.map((_, index) => (

@@ -19,7 +19,7 @@ const MyApp = ({ Component, pageProps }) => {
           </Head>
 
 
-      <GlobalContext.Provider value={global}>
+      <GlobalContext.Provider value={pageProps}>
           <Component {...pageProps}/>
       </GlobalContext.Provider>
       </>
@@ -30,8 +30,10 @@ MyApp.getInitialProps = async (ctx) => {
     const appProps = await App.getInitialProps(ctx);
     // Fetch global site settings from Strapi
     const global = await fetchAPI("/global");
+    const menu = await fetchAPI("/menu");
+
     // Pass the data to our page via props
-    return { ...appProps, pageProps: { global } };
+    return { ...appProps, pageProps: { global, menu }};
 };
 
 export default MyApp

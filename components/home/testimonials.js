@@ -35,7 +35,7 @@ const Testimonials = ({ testimonials }) => {
 
     return (
         <section className="bg-gray-100 text-primary">
-            <div className="max-w-7xl mx-auto py-16 sm:py-32 px-8 sm:px-0">
+            <div className="relative max-w-7xl mx-auto py-16 sm:py-32 px-8 sm:px-0">
                 <Slider autoplay autoPlayInterval={6000}>
                     {children}
                 </Slider>
