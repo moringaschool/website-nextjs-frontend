@@ -4,7 +4,6 @@ import Image from "../image";
 const Hero = ({ homepage }) => {
     return (
        <>
-           {homepage.hero && (
            <section className="bg-cover bg-no-repeat bg-center" style={{backgroundImage : `url('${getStrapiMedia(homepage.hero.image)}')`}}>
                <div className="bg-cover bg-no-repeat bg-bottom" style={{backgroundImage : `url('${getStrapiMedia(homepage.hero.pattern)}')`}}>
                    <div className="bg-primary bg-opacity-50">
@@ -61,7 +60,6 @@ const Hero = ({ homepage }) => {
                    </div>
                </div>
            </section>
-           )}
        </>
         );
 };

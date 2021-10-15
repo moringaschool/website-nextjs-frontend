@@ -11,9 +11,9 @@ import Partners from "../components/home/partners";
 const Home = ({  homepage, menu , testimonials, courses, partners}) => {
   return (
       <Layout menu={menu}>
-        <Seo seo={homepage.seo} />
-        <Hero homepage={homepage} />
-        <Feature homepage={homepage} />
+          {homepage.seo && (<Seo seo={homepage.seo} />)}
+          {homepage.hero && (<Hero homepage={homepage} />)}
+          {homepage.feature && (<Feature homepage={homepage} />)}
           {testimonials && (<Testimonials testimonials={testimonials} />)}
           {courses && (<Courses homepage={homepage} courses={courses} />)}
           {partners && (<Partners partners={partners} />)}
