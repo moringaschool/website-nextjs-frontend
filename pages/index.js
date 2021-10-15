@@ -16,7 +16,7 @@ const Home = ({  homepage, menu , testimonials, courses, partners}) => {
         <Feature homepage={homepage} />
           {testimonials && (<Testimonials testimonials={testimonials} />)}
           {courses && (<Courses homepage={homepage} courses={courses} />)}
-          {partners && <Partners partners={partners} />}
+          {partners && (<Partners partners={partners} />)}
       </Layout>
   );
 };
