@@ -44,7 +44,7 @@ export default function Footer ( { menu, global } ) {
                             </li>
 
                             <li>
-                                <a target="_blank" href={global.contacts.whatsapp} className="flex items-center text-gray-100 hover:text-white transition ease-in-out duration-200 mr-4">
+                                <a target="_blank" href={`https://wa.me/${global.contacts.whatsapp}`} className="flex items-center text-gray-100 hover:text-white transition ease-in-out duration-200 mr-4">
                                     <span className="text-secondary mr-3">
                                         <svg className="h-3 w-3" fill="currentColor" viewBox="0 0 24 24">
                                             <path d="M20 18.35V19a1 1 0 0 1-1 1h-2A17 17 0 0 1 0 3V1a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4c0 .56-.31 1.31-.7 1.7L3.16 8.84c1.52 3.6 4.4 6.48 8 8l2.12-2.12c.4-.4 1.15-.71 1.7-.71H19a1 1 0 0 1 .99 1v3.35z"></path>
